@@ -34,6 +34,7 @@ public class UnitSelectionManager : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
+            Debug.Log("opqr1");
             RaycastHit hit;
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast(ray,out hit, Mathf.Infinity,clickableLayer))
@@ -44,7 +45,7 @@ public class UnitSelectionManager : MonoBehaviour
                 }
                 else
                 {
-                    SelectUnit(hit.collider.gameObject);
+                    SelectSingleUnit(hit.collider.gameObject);
                 }
             }
             else
@@ -70,7 +71,7 @@ public class UnitSelectionManager : MonoBehaviour
         }
     }
 
-    private void DeselectUnits()
+    public void DeselectUnits()
     {
         foreach(GameObject unit in unitsSelected)
         {
@@ -97,9 +98,16 @@ public class UnitSelectionManager : MonoBehaviour
         }
     }
 
-    private void SelectUnit(GameObject unit)
+    private void SelectSingleUnit(GameObject unit)
     {
         DeselectUnits();
+        unitsSelected.Add(unit);
+        EnableUnitMovement(unit,true);
+        TriggerSelctionIndicator(unit,true);
+    }
+
+    public void DragSelect(GameObject unit)
+    {
         unitsSelected.Add(unit);
         EnableUnitMovement(unit,true);
         TriggerSelctionIndicator(unit,true);
