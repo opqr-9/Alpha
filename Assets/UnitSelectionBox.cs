@@ -23,7 +23,6 @@ public class UnitSelectionBox : MonoBehaviour
         if(Input.GetMouseButtonDown(0))
         {
             startPos = Input.mousePosition;
-            Debug.Log("opqr2");
         }
         if(Input.GetMouseButton(0))
         {
@@ -32,7 +31,6 @@ public class UnitSelectionBox : MonoBehaviour
             {
                 UpdateSelectionBox();
                 SelectUnits();
-                Debug.Log("opqr3");
             }
         }
         if(Input.GetMouseButtonUp(0))

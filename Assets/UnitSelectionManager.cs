@@ -34,7 +34,6 @@ public class UnitSelectionManager : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            Debug.Log("opqr1");
             RaycastHit hit;
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
             if(Physics.Raycast(ray,out hit, Mathf.Infinity,clickableLayer))
