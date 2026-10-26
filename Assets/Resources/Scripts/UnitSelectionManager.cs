@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class UnitSelectionManager : MonoBehaviour
 
     public LayerMask clickableLayer;
     public LayerMask groundLayer;
+    public LayerMask attackableLayer;
+
     public GameObject groundMarker;
     private Camera camera;
 
@@ -60,14 +63,46 @@ public class UnitSelectionManager : MonoBehaviour
         {
             RaycastHit hit;
             Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-            if(Physics.Raycast(ray,out hit, Mathf.Infinity,groundLayer))
+            if(Physics.Raycast(ray,out hit, Mathf.Infinity,attackableLayer))
             {
+                if(hit.transform.CompareTag("Enemy"))
+                {
+                    bool flag=false;
+                    foreach(GameObject unit in unitsSelected)
+                    {
+                        if(unit.GetComponent<AttackController>())
+                        {
+                            unit.GetComponent<AttackController>().attackTarget = hit.transform;
+                            flag=true;
+                        }
+                    }
+                    if(flag)
+                    { 
+                        ChangeAttackCursor();
+                    }
+                }
+            }
+            else if(Physics.Raycast(ray,out hit, Mathf.Infinity,groundLayer))
+            {
+                    foreach(GameObject unit in unitsSelected)
+                    {
+                        if(unit.GetComponent<AttackController>())
+                        {
+                            unit.GetComponent<AttackController>().attackTarget = null;
+                        }
+                    }
+
                 groundMarker.transform.position = hit.point;
-                
                 groundMarker.SetActive(false);
                 groundMarker.SetActive(true);
             }
+
         }
+    }
+
+    private void ChangeAttackCursor()
+    {
+        
     }
 
     public void DeselectUnits()

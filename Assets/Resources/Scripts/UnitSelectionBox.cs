@@ -11,11 +11,11 @@ public class UnitSelectionBox : MonoBehaviour
     Vector2 startPos;
     Vector2 endPos;
 
-
     private void Start()
     {
         camera = Camera.main;
         startPos=endPos=Vector2.zero;
+        boxRect.sizeDelta = Vector2.zero;
     }
 
     private void Update()
