@@ -16,9 +16,4 @@ public class UnitIdleState : StateMachineBehaviour
             animator.SetBool("isFollowing", true);
         }
     }
-
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-       
-    }
 }

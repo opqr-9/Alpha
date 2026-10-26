@@ -5,6 +5,7 @@ using UnityEngine;
 public class AttackController : MonoBehaviour
 {
     public Transform attackTarget;
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Enemy"))
@@ -12,12 +13,11 @@ public class AttackController : MonoBehaviour
             attackTarget = other.transform;
         }
     }
-
-    private void OnTriggerExit(Collider other)
+    private void OTriggerStay(Collider other)
     {
-        if(other.CompareTag("Enemy"))
+        if(attackTarget==null&&other.CompareTag("Enemy"))
         {
-            attackTarget = null;
+            attackTarget=other.transform;
         }
     }
 }

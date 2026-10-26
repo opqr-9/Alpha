@@ -24,15 +24,9 @@ public class UnitFollowState : StateMachineBehaviour
         agent.SetDestination(attackController.attackTarget.position);
         animator.transform.LookAt(attackController.attackTarget.position);
 
-        // float distance = Vector3.Distance(animator.transform.position, attackController.attackTarget.position);
-        // if(distance <= attackDistance)
-        // {
-        //     animator.SetBool("IsAttacking", true);
-        // }
-    }
-
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        //agent.SetDestination(animator.transform.position);
+        if(Vector3.Distance(animator.transform.position, attackController.attackTarget.position) <= attackDistance)
+        {
+            animator.SetBool("isAttacking", true);
+        }
     }
 }

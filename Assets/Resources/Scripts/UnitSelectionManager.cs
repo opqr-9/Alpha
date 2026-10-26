@@ -84,13 +84,13 @@ public class UnitSelectionManager : MonoBehaviour
             }
             else if(Physics.Raycast(ray,out hit, Mathf.Infinity,groundLayer))
             {
-                    foreach(GameObject unit in unitsSelected)
+                foreach(GameObject unit in unitsSelected)
+                {
+                    if(unit.GetComponent<AttackController>())
                     {
-                        if(unit.GetComponent<AttackController>())
-                        {
-                            unit.GetComponent<AttackController>().attackTarget = null;
-                        }
+                        unit.GetComponent<AttackController>().attackTarget = null;
                     }
+                }
 
                 groundMarker.transform.position = hit.point;
                 groundMarker.SetActive(false);
