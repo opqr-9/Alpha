@@ -6,7 +6,7 @@ public class UnitFollowState : StateMachineBehaviour
     AttackController attackController;
     NavMeshAgent agent;
 
-    public float attackDistance = 1f;
+    public float attackDistance = 2f;
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         attackController = animator.GetComponent<AttackController>();
@@ -18,6 +18,7 @@ public class UnitFollowState : StateMachineBehaviour
         if(attackController.attackTarget == null)
         {
             animator.SetBool("isFollowing", false);
+            agent.ResetPath();
             return;
         }
 
@@ -27,6 +28,7 @@ public class UnitFollowState : StateMachineBehaviour
         if(Vector3.Distance(animator.transform.position, attackController.attackTarget.position) <= attackDistance)
         {
             animator.SetBool("isAttacking", true);
+            agent.ResetPath();
         }
     }
 }

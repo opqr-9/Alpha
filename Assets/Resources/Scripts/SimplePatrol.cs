@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SimplePatrol : MonoBehaviour
 {
-    public float speed = 5.0f; // Adjust the speed of movement
+    public float speed; // Adjust the speed of movement
 
     private bool movingForward = true;
     private float timer = 0.0f;
