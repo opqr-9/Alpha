@@ -11,6 +11,7 @@ public class UnitFollowState : StateMachineBehaviour
     {
         attackController = animator.GetComponent<AttackController>();
         agent = animator.GetComponent<NavMeshAgent>();
+        // animator.SetBool("isMoving",true);
     }
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -30,5 +31,10 @@ public class UnitFollowState : StateMachineBehaviour
             animator.SetBool("isAttacking", true);
             agent.ResetPath();
         }
+    }
+
+    public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        // animator.SetBool("isMoving",false);
     }
 }

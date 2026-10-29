@@ -64,7 +64,6 @@ public class CameraController : MonoBehaviour
     {
         if(Input.mouseScrollDelta.y!=0)
         {
-            Debug.Log(Input.mouseScrollDelta.y);
             camera.fieldOfView = Mathf.Min(Mathf.Max(camera.fieldOfView-Input.mouseScrollDelta.y, minFov), maxFov);
         }
         if(isFollowing)

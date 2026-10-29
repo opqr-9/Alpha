@@ -9,6 +9,8 @@ public class AttackController : MonoBehaviour
     public int damage=1;
     public float attackSpeed=0.75f;
 
+    public GameObject muzzleEffect;
+
     private void OnTriggerEnter(Collider other)
     {
         if(attackTarget==null&&!other.CompareTag(tag))

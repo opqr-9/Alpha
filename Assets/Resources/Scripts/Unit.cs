@@ -6,7 +6,6 @@ public class Unit : MonoBehaviour
 {
     public float health;
     public float maxHealth=100;
-
     public HealthTracker healthTracker;
     private void Start()
     {
