@@ -13,7 +13,7 @@ public class UnitSelectionManager : MonoBehaviour
     public LayerMask groundLayer;
     public LayerMask attackableLayer;
 
-    public GameObject groundMarker;
+    // public GameObject groundMarker;
     private Camera camera;
 
     private void Awake()
@@ -92,11 +92,35 @@ public class UnitSelectionManager : MonoBehaviour
                     }
                 }
 
-                groundMarker.transform.position = hit.point;
-                groundMarker.SetActive(false);
-                groundMarker.SetActive(true);
+                // groundMarker.transform.position = hit.point;
+                // groundMarker.SetActive(false);
+                // groundMarker.SetActive(true);
             }
+        }
 
+        CursorSelector();
+    }
+
+    private void CursorSelector()
+    {
+        RaycastHit hit;
+        Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+
+        if(Physics.Raycast(ray,out hit, Mathf.Infinity,clickableLayer))
+        {
+            CursorManager.instanca.SetMarkerType(CursorManager.CursorType.Selectable);
+        }
+        else if(Physics.Raycast(ray,out hit, Mathf.Infinity,attackableLayer))
+        {
+            CursorManager.instanca.SetMarkerType(CursorManager.CursorType.Attackable);
+        }
+        else if(Physics.Raycast(ray,out hit, Mathf.Infinity,groundLayer)&&unitsSelected.Count>0)
+        {
+            CursorManager.instanca.SetMarkerType(CursorManager.CursorType.Walkable);
+        }
+        else
+        {
+            CursorManager.instanca.SetMarkerType(CursorManager.CursorType.None);
         }
     }
 
@@ -113,7 +137,7 @@ public class UnitSelectionManager : MonoBehaviour
             TriggerSelctionIndicator(unit,false);
         }
         unitsSelected.Clear();
-        groundMarker.SetActive(false);
+        // groundMarker.SetActive(false);
     }
 
     private void MultiSelect(GameObject unit)
