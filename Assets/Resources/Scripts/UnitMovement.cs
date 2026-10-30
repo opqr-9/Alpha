@@ -26,18 +26,8 @@ public class UnitMovement : MonoBehaviour
 
             if(Physics.Raycast(ray, out hit, Mathf.Infinity, groundLayer))
             {
-                animator.SetBool("isMoving",true);
                 agent.SetDestination(hit.point);
             }
-        }
-
-        if(agent.hasPath==false||agent.remainingDistance<=agent.stoppingDistance)
-        {
-            animator.SetBool("isMoving",false);
-        }
-        else
-        {
-            animator.SetBool("isMoving",true);
         }
     }
 }

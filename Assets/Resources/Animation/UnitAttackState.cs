@@ -45,6 +45,7 @@ public class UnitAttackState : StateMachineBehaviour
         if(nextAttackTime<=0)
         {
             attackController.attackTarget.GetComponent<Unit>().TakeDamage(damage);
+            SoundManager.instance.PlayInfantryAttackSound();
             nextAttackTime+=attackSpeed;
         }
     }
